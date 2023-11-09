@@ -10,6 +10,7 @@ struct Node {
   Node* next;
 };
 
+// Initialize head pointer as null
 Node* head = NULL;
 
 void insertAtEnd(int data) {
@@ -28,15 +29,6 @@ void insertAtEnd(int data) {
   }
 }
 
-void printLinkedList() {
-  Node* temp = head;
-  while (temp != NULL) {
-    cout << temp->data << " ";
-    temp = temp->next;
-  }
-  cout << endl;
-}
-
 int main() {
 
   for (int i = 0; i < 5; i++) {
@@ -45,7 +37,11 @@ int main() {
     insertAtEnd(data);
   }
   
-  printLinkedList();
+  Node* temp = head;
+  while (temp != NULL) {
+    cout << temp->data << " ";
+    temp = temp->next;
+  };
 
   return 0;
 }
