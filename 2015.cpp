@@ -5,38 +5,47 @@
 #include <iostream>
 using namespace std;
 
-// Creating a node bu using class
-class Node {
-    public:
-    // 1. data item
-    int data;
-    // 2. An address of another node
-    Node* next;
+struct Node {
+  int data;
+  Node* next;
 };
 
-int main() {
-    
-    // Initialize head pointer as null
-    Node* head = NULL;
+Node* head = NULL;
 
-    for (int i = 0; i < 5; i++)
-    {
-        // Create a new node by dynamic allocating memory
-        Node* newNode = new Node;
-        // Input data
-        cin >> newNode->data;
+void insertAtEnd(int data) {
+  Node* newNode = new Node;
+  newNode->data = data;
+  newNode->next = NULL;
 
-        // Connect to next pointer
-        newNode->next = head;
-
-        // Update head to the new node
-        head = newNode;
+  if (head == NULL) {
+    head = newNode;
+  } else {
+    Node* temp = head;
+    while (temp->next != NULL) {
+      temp = temp->next;
     }
-
-
-  while (head != NULL) {
-    cout << head->data << " ";
-    head = head->next;
+    temp->next = newNode;
   }
- return 0;
+}
+
+void printLinkedList() {
+  Node* temp = head;
+  while (temp != NULL) {
+    cout << temp->data << " ";
+    temp = temp->next;
+  }
+  cout << endl;
+}
+
+int main() {
+
+  for (int i = 0; i < 5; i++) {
+    int data;
+    cin >> data;
+    insertAtEnd(data);
+  }
+  
+  printLinkedList();
+
+  return 0;
 }
