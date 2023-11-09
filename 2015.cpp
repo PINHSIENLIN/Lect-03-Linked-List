@@ -15,36 +15,25 @@ class Node {
 };
 
 int main() {
-// Set default of pointers in NULL
-Node* head;
-Node* one = NULL;
-Node* two = NULL;
-Node* three = NULL;
-Node* four = NULL;
-Node* five = NULL;
+    
+    // Initialize head pointer as null
+    Node* head = NULL;
 
-// Allocate memory
-one = new Node();
-two = new Node();
-three = new Node();
-four = new Node();
-five = new Node();
+    for (int i = 0; i < 5; i++)
+    {
+        // Create a new node by dynamic allocating memory
+        Node* newNode = new Node;
+        // Input data
+        cin >> newNode->data;
 
-// Assign value values
-one->data = 1;
-two->data = 2;
-three->data = 3;
-four->data = 4;
-five->data = 5;
+        // Connect to next pointer
+        newNode->next = head;
 
-// Connect nodes
-one->next = two;
-two->next = three;
-three->next = four;
-four->next = five;
-five->next = NULL;
+        // Update head to the new node
+        head = newNode;
+    }
 
-head = one;
+
   while (head != NULL) {
     cout << head->data << " ";
     head = head->next;
