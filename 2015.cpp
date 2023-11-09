@@ -1,6 +1,6 @@
 // Define a link sequence, store the sequentially input data in the dynamic data structure (ex: enter 5 entries), 
 // and then print out the sequence data sequentially
-
+// https://www.softwaretestinghelp.com/linked-list/
 #include <bits/stdc++.h>  // to include all the standard libraries
 #include <iostream>
 using namespace std;
