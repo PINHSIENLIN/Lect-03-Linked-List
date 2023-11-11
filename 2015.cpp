@@ -5,16 +5,26 @@
 #include <iostream>
 using namespace std;
 
+
+// The 'Node' UDT has two members:
+// data: An integer variable that stores the actual data associated with the node.
+// next: A pointer to another 'Node' structure. 
+// This pointer is used to link nodes together, forming the linked list.
+// The 'next' pointer is crucial for the operation of a linked list. 
+// It allows each node to reference the next node in the sequence, enabling traversal and manipulation of the list.
 struct Node {
   int data;
   Node* next;
 };
 
-// Initialize head pointer as null
+// The statement Node* head = NULL; declares a global variable named 'head' of type 'Node*'. 
+// This variable acts as a reference to the first node in the linked list. 
+// Initially, it is set to NULL, indicating an empty list
 Node* head = NULL;
 
 void insertAtEnd(int data) {
   // Creating a new node and setting its data and next pointer to NULL
+  // syntax: pointer-variable = new data-type;
   Node* newNode = new Node;
   newNode->data = data;
   newNode->next = NULL;
