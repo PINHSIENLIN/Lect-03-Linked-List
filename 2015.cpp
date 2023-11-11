@@ -25,6 +25,7 @@ Node* head = NULL;
 void insertAtEnd(int data) {
   // Creating a new node and setting its data and next pointer to NULL
   // syntax: pointer-variable = new data-type;
+  // https://eng.libretexts.org/Courses/Delta_College/C_-_Data_Structures/03%3A_Arrays/3.01%3A_Dynamic_memory_allocation
   Node* newNode = new Node;
   newNode->data = data;
   newNode->next = NULL;
