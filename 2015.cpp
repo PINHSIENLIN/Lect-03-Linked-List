@@ -1,4 +1,4 @@
-// Define a link sequence, store the sequentially input data in the dynamic data structure (ex: enter 5 entries), 
+// Define a linked list, store the sequentially input data in the dynamic data structure (ex: enter 5 entries), 
 // and then print out the sequence data sequentially
 
 #include <bits/stdc++.h>  // to include all the standard libraries
