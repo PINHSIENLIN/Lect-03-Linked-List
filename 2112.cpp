@@ -16,7 +16,7 @@ using namespace std;
 struct Node {
   string name;
   string email;
-  int phone;
+  string phone;
   Node* next;
 };
 
@@ -24,7 +24,7 @@ struct Node {
 Node* head = NULL;
 
 // Function to add data to the linked list
-void insertAtEnd(string name, string email, int phone){
+void insertAtEnd(string name, string email, string phone){
     Node* newNode = new Node;
     newNode->name = name;
     newNode->email = email;
@@ -102,6 +102,19 @@ int LengthofLinkedList(Node* head){
       return count;
 }
 
+// Function which return string by concatenating it. 
+string repeat(string s, int n) 
+{ 
+    // Copying given string to temporary string. 
+    string s1 = s; 
+  
+    for (int i=1; i<n;i++) 
+        s += s1; // Concatenating strings 
+  
+    return s; 
+}
+
+
 int main(){
     
     // Choice
@@ -113,11 +126,16 @@ int main(){
 
         // if Choice = i, insert a data
         if (choice == 'i') {
-            string name, email;
-            int phone;
+            string name, email, phone;
+            string s = "0";
             cin >> name;
             cin >> email;
             cin >> phone;
+            int str_length = phone.length();
+
+            if (phone.length() != 10){
+                phone = repeat(s,10-str_length) + phone;
+            }
             insertAtEnd(name,email,phone);
         }
         else if (choice == 'd'){
@@ -134,10 +152,11 @@ int main(){
             cin >> data;
             Node* temp = findName(head,data);
             if (findName(head,data) != NULL){;
-               cout << "found " << endl;
+               cout << "found" << endl;
                cout << temp->name << endl;
                cout << temp->email << endl;
                cout << temp->phone << endl;
+               cout << endl;
             } else {
                cout << "Not found" << endl;
             }
@@ -153,7 +172,6 @@ int main(){
                    cout << temp->email << endl;
                    cout << temp->phone << endl;
                    temp = temp->next;
-                if (temp != NULL)
                    cout << endl;
             };
                    
