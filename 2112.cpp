@@ -65,31 +65,32 @@ Node* findName(Node* head, string target){
 // 3.Deallocating the memory: Finally, you need to free the memory that was allocated for the node to be deleted. 
 // This is typically done using the delete operator in C++.
 
-bool deleteNode(Node* head, string target){
+bool deleteNode(Node*& head, string target){
     //  The prev pointer keeps track of the previous node
      Node* prev = NULL;
     //  The curr pointer keeps track of the current node
      Node* curr = head;
-     // curr != NULL to check if the linked list is empty
-     while (curr != NULL){
-         if (curr->name == target){
-            // Case 1: Delete the head node
-            if (prev == NULL){
-            //  the head pointer is updated to point to the next node  
-                head = curr->next;
-            } else {
-            // Case 2: traverses the linked list until it finds the node with the target value. 
-            // It keeps track of the previous node so that it can update the links after deleting the target node
-                prev->next = curr->next;
-            }
-        // deallocates the memory for the target node
+
+    // Target is on the first node and curr != NULL to check if the linked list is empty
+    if (curr != NULL && curr->name == target){
+        head = curr->next;
         delete curr;
         return true;
-        }
-       prev = curr;
-       curr = curr->next;
-     }
-    return false;
+    }     
+
+    // Target is not on the first node
+    while(curr != NULL && curr->name != target){
+         prev = curr;
+         curr = curr->next;
+    }
+    // If the node with the key is not found, do nothing
+    if (curr == NULL){
+        return false;
+    }
+    
+    prev->next = curr->next;
+    delete curr;
+    return true;
 }
 
 int LengthofLinkedList(Node* head){
