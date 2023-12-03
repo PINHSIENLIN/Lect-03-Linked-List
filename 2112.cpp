@@ -1,21 +1,22 @@
 // Integrate linked list functionality into one program
 // Function
-// Enter 'i', then enter a number to insert the data in the node as value at the end of the string
-// Enter 'd' and then enter a number to delete the data in the node with the same value 
-// (assuming that the entered value will not be repeated). After successful deletion, Delete ok will be printed. 
-// If there is no data with the same value, Can will be printed. not delete
-// Enter 'f' followed by a number to print found xx for data nodes with the same number. 
-// If not found, Not found will be printed.
-// Enter ‘g’ to display the current number of records
-// Enter ‘l’ to print out the contents of all nodes in the series into one column. 
-// There is a blank after each output, and a new line is required at the end.
+// Enter ‘i’ to add a new node at the end of the list. You can enter your name, email, and phone number.
+// Enter 'd' followed by a name to delete those with the same name in the node 
+// (assuming that the entered name will not be repeated). Delete ok will be printed after successful deletion. 
+// If there is no data with the same name, Can not delete will be printed.
+// Enter 'f' followed by a name to print out found xx and data for nodes with the same name. 
+// If not found, print out Not found.
+// Enter ‘l’ to print out the contents of all nodes in the list
 // Type 'q' to exit the program
 
 #include <iostream>
+#include <string>
 using namespace std;
 
 struct Node {
-  int data;
+  string name;
+  string email;
+  int phone;
   Node* next;
 };
 
@@ -23,9 +24,11 @@ struct Node {
 Node* head = NULL;
 
 // Function to add data to the linked list
-void insertAtEnd(int data){
+void insertAtEnd(string name, string email, int phone){
     Node* newNode = new Node;
-    newNode->data = data;
+    newNode->name = name;
+    newNode->email = email;
+    newNode->phone = phone;
     newNode->next = NULL;
 
     if (head == NULL){
@@ -40,16 +43,16 @@ void insertAtEnd(int data){
     }
 }
 
-// Function to find the number
-bool findNumber(Node* head, int target){
+// Function to find the name
+Node* findName(Node* head, string target){
      Node* current = head;
      while (current->next != NULL){
-        if(current->data == target){
-            return true;
+        if(current->name == target){
+            return current;
         }
         current = current->next;
      }
-     return false;
+    return current;
 }
 
 // Deleting a node from a linked list involves three steps:
@@ -62,14 +65,14 @@ bool findNumber(Node* head, int target){
 // 3.Deallocating the memory: Finally, you need to free the memory that was allocated for the node to be deleted. 
 // This is typically done using the delete operator in C++.
 
-bool deleteNode(Node* head, int target){
+bool deleteNode(Node* head, string target){
     //  The prev pointer keeps track of the previous node
      Node* prev = NULL;
     //  The curr pointer keeps track of the current node
      Node* curr = head;
      // curr != NULL to check if the linked list is empty
      while (curr != NULL){
-         if (curr->data == target){
+         if (curr->name == target){
             // Case 1: Delete the head node
             if (prev == NULL){
             //  the head pointer is updated to point to the next node  
@@ -86,7 +89,7 @@ bool deleteNode(Node* head, int target){
        prev = curr;
        curr = curr->next;
      }
-     return false;
+    return false;
 }
 
 int LengthofLinkedList(Node* head){
@@ -110,12 +113,15 @@ int main(){
 
         // if Choice = i, insert a data
         if (choice == 'i') {
-            int data;
-            cin >> data;
-            insertAtEnd(data);
+            string name, email;
+            int phone;
+            cin >> name;
+            cin >> email;
+            cin >> phone;
+            insertAtEnd(name,email,phone);
         }
         else if (choice == 'd'){
-            int data;
+            string data;
             cin >> data;
             if (deleteNode(head,data)){
                 cout << "Delete ok" << endl;
@@ -124,10 +130,14 @@ int main(){
             }
         }
         else if (choice == 'f'){
-            int data;
+            string data;
             cin >> data;
-            if (findNumber(head,data)){
-               cout << "found " << data << endl;
+            Node* temp = findName(head,data);
+            if (findName(head,data) != NULL){;
+               cout << "found " << endl;
+               cout << temp->name << endl;
+               cout << temp->email << endl;
+               cout << temp->phone << endl;
             } else {
                cout << "Not found" << endl;
             }
@@ -139,10 +149,14 @@ int main(){
         else if (choice == 'l'){
              Node* temp = head;
             while (temp != NULL) {
-                   cout << temp->data << " ";
+                   cout << temp->name << endl;
+                   cout << temp->email << endl;
+                   cout << temp->phone << endl;
                    temp = temp->next;
+                if (temp != NULL)
+                   cout << endl;
             };
-            cout << endl;
+                   
         } 
         else if (choice == 'q')
            return 0;
