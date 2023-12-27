@@ -6,14 +6,16 @@
 // 3.leave
 
 #include <iostream>
+#include <string>
 using namespace std;
 
 class Node{
     public:
         int data;
+        char is_prime;
         Node* next;
     // Constructor to initialize data and next pointer (Member Initialization)
-    Node(int value) : data(value), next(nullptr) {}
+    Node(int value, char prime) : data(value), is_prime(prime), next(nullptr) {}
 };
 
 class LinkedList {
@@ -24,8 +26,8 @@ class LinkedList {
     // Constructor to initialize an empty linked list
     LinkedList() : head(nullptr){}
 
-    void insertAtEnd(int value) {
-        Node* newNode = new Node(value);
+    void insertAtEnd(int value, char prime) {
+        Node* newNode = new Node(value, prime);
         
         // If the list is empty, make the new node the head
         if (head == nullptr){
@@ -43,7 +45,7 @@ class LinkedList {
     void display() {
         Node* current = head;
         while (current != nullptr) {
-            cout << current->data << endl;
+            cout << current->data << " " << current->is_prime << endl;
             current = current->next;
         }
     }
@@ -53,14 +55,29 @@ class LinkedList {
             return;
         
         displayReverse(current->next);
-        cout << current->data << endl;
+        cout << current->data << " " << current->is_prime << endl;
     }
 
     void displayReverse(){
         displayReverse(head);
     }
-
 };
+
+char isPrime(int number) {
+    // Handle cases where number is less than 2
+    if (number < 2) {
+        return 'N';
+    }
+
+    // Check for divisibility from 2 to the square root of the number
+    for (int i = 2; i * i <= number; ++i) {
+        if (number % i == 0) {
+            return 'N'; // Number is divisible, not prime
+        }
+    }
+
+    return 'P'; // Number is prime
+}
 
 int main() {
     
@@ -72,13 +89,13 @@ int main() {
     
     for (int i = 1; i <= num; i++)
     {
+        char prime;
         if (num % i == 0){
             cout << i << " ";
-            myList.insertAtEnd(i);
+            myList.insertAtEnd(i,isPrime(i));     
         }
-        
-        // Tell if a prime
     }
+    
     cout << endl;
 
     while (true){
