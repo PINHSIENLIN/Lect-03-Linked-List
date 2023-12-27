@@ -89,7 +89,6 @@ int main() {
     
     for (int i = 1; i <= num; i++)
     {
-        char prime;
         if (num % i == 0){
             cout << i << " ";
             myList.insertAtEnd(i,isPrime(i));     
